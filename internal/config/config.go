@@ -16,18 +16,18 @@ func init() {
 		logrus.Fatalf("Error initializing: %s", err.Error())
 	}
 
-	// loc, err := time.LoadLocation(Config.DefaultTimezone)
-	// if err != nil {
-	// 	logrus.Fatalf("Invalid timezone: %s", Config.DefaultTimezone)
-	// }
+	loc, err := time.LoadLocation(Config.DefaultTimezone)
+	if err != nil {
+		logrus.Fatalf("Invalid timezone: %s", Config.DefaultTimezone)
+	}
 
-	// Config.DefaultLocation = loc
+	Config.DefaultLocation = loc
 }
 
 type config struct {
-	AppPort         string `env:"APP_PORT" envDefault:"8080"`
-	DefaultTimezone string `env:"DEFAULT_TIMEZONE" envDefault:"America/Bogota"`
-	// DefaultLocation *time.Location `env:"-"`
+	AppPort         string         `env:"APP_PORT" envDefault:"8080"`
+	DefaultTimezone string         `env:"DEFAULT_TIMEZONE" envDefault:"America/Bogota"`
+	DefaultLocation *time.Location `env:"-"`
 	DatabaseConnection
 	Environment string `env:"ENV_APP" envDefault:"LOCAL"`
 }

@@ -18,9 +18,12 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o /main ./cmd/api
 
 # Multi-Stage production build
-FROM scratch AS runner
+FROM golang:${GO_VERSION}-alpine AS runner
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+
+# Install timezone database
+RUN apk --no-cache add tzdata
 
 COPY .env .
 COPY --from=builder /main /main
