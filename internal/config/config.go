@@ -25,7 +25,7 @@ func init() {
 }
 
 type config struct {
-	AppPort         string         `env:"APP_PORT" envDefault:"8080"`
+	AppPort         string         `env:"APP_PORT" envDefault:"80"`
 	DefaultTimezone string         `env:"DEFAULT_TIMEZONE" envDefault:"America/Bogota"`
 	DefaultLocation *time.Location `env:"-"`
 	DatabaseConnection
